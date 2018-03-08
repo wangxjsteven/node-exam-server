@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "start": "supervisor --inspect index.js"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-latest": "^6.24.1",
+    "babel-preset-stage-3": "^6.24.1",
+    "express": "^4.16.2",
+    "mongoose": "^5.0.7"
+  },
+  "dependencies": {}
+}
