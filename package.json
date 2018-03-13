@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "supervisor --inspect index.js"
+    "start": "nodemon --inspect index.js"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

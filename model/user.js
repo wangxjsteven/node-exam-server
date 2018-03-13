@@ -3,9 +3,9 @@ let mongoose = require("mongoose"),
 mongoose.connect('mongodb://localhost:27017/challenge',(err)=> {
     // body...
     if(err){
-        console.log('连接失败',err)
+        console.log('mongodb 连接失败',err)
     }else{
-        console.log('连接成功')
+        console.log('mongodb 连接成功')
     }
 });
 let Schema = mongoose.Schema;
