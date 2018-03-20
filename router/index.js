@@ -3,6 +3,7 @@ let express=require('express'),
     regist=require('./user/regist'),
     login=require('./user/login'),
     logout=require('./user/logout');
+    questions=require('./course/questions')
 
 // 该路由使用的中间件
 router.use(function timeLog(req, res, next) {
@@ -16,10 +17,12 @@ router.get('/', function(req, res) {
 });
 
 // 注册
-router.post('/regist', regist);
+router.get('/regist', regist);
 // 登入
-router.post('/login', login);
+router.get('/login', login);
 // 登出
-router.post('/logout', logout);
+router.get('/logout', logout);
+//问题
+router.get('/questions',questions);
 
 module.exports = router;

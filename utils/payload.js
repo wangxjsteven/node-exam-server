@@ -6,7 +6,7 @@
  'NETWORK_EXCEPTION': "网络异常"
  'BUSINESS_ERROR': "服务异常"
  */
-let payloadException = function (code, message) {
+let PayloadException = function (code, message) {
     let resO = {
         code: code || 9999, // 默认 BUSINESS_ERROR
         message: '',
@@ -40,7 +40,7 @@ let payloadException = function (code, message) {
     return resO
 };
 
-let payloadSuccess = function (data = {}) {
+let PayloadSuccess = function (data = {}) {
     return {
         code: 0,
         message: "操作成功",
@@ -49,6 +49,6 @@ let payloadSuccess = function (data = {}) {
 };
 
 module.exports = {
-    payloadException: payloadException,
-    payloadSuccess: payloadSuccess
+    PayloadException: PayloadException,
+    PayloadSuccess: PayloadSuccess
 };

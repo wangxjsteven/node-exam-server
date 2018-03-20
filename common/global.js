@@ -3,7 +3,7 @@ global.Prefix = '';
 
 
 //初始化接口处理全局变量
-const {payloadException, payloadSuccess} = require('../utils/payload');
+const {PayloadException, PayloadSuccess} = require('../utils/payload');
 
-global.PayloadException = payloadException;
-global.PayloadSuccess = payloadSuccess;
+global.PayloadException = PayloadException;
+global.PayloadSuccess = PayloadSuccess;

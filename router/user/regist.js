@@ -1,4 +1,4 @@
-let User = require('../../model/user.js')
+let {User} = require('../../model/user.js')
 
 /**
  * @author: kelly
@@ -8,7 +8,8 @@ let User = require('../../model/user.js')
  */
 let regist = function(req, res, next) {
     
-    console.log('user:', User)
+    // console.log('user:', User)
+    // console.log(req)
     if (!User.find({ username: /admin/ })) {
 
         let user1 = new User({ username: 'admin', password: 123456 })
@@ -17,7 +18,7 @@ let regist = function(req, res, next) {
         })
         return res.send(PayloadSuccess())
     }else{
-        return res.send(PayloadException('BUSINESS_ERROR'),'已有同名账户，无法重复注册，请知悉！')
+        return res.send(PayloadException('BUSINESS_ERROR','已有同名账户，无法重复注册，请知悉！'))
     }
 };
 
