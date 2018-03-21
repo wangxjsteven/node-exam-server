@@ -1,4 +1,4 @@
-let { Question } = require('../../model/user.js')
+let { Collection } = require('../../model/user.js')
 // console.log('ddd',Question)
 /**
  * @author: kelly
@@ -6,16 +6,16 @@ let { Question } = require('../../model/user.js')
  * @path /user/regist':
  * @description: 登出
  */
-let questions = function(req, res, next) {
-    Question.find((err, questions) => {
-        console.log(questions)
+let collection = function(req, res, next) {
+    Collection.find((err, collection) => {
+        console.log(collection)
         if (err) {
             res.send(PayloadException('BUSINESS_ERROR', '获取题库失败，原因：' + err))
         } else {
-            res.send(PayloadSuccess(questions))
+            res.send(PayloadSuccess(collection))
         }
     })
 
 };
 
-module.exports = questions
+module.exports = collection

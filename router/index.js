@@ -4,6 +4,7 @@ let express=require('express'),
     login=require('./user/login'),
     logout=require('./user/logout');
     questions=require('./course/questions')
+    collection=require('./course/collection')
 
 // 该路由使用的中间件
 router.use(function timeLog(req, res, next) {
@@ -24,5 +25,7 @@ router.get('/login', login);
 router.get('/logout', logout);
 //问题
 router.get('/questions',questions);
+//收藏
+router.get('/collection',collection);
 
 module.exports = router;

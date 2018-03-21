@@ -1,5 +1,5 @@
 let mongoose = require("mongoose"),
-    User;
+    User,Question,Collection;
 mongoose.connect('mongodb://localhost:27017/challenge', (err) => {
     // body...
     if (err) {
@@ -30,7 +30,17 @@ let questionSchema = new Schema({
 
 //变量名User should be the same as the first argument:'User'
 Question = mongoose.model('Question', questionSchema);
+
+let collectionSchema=new Schema({
+    success:Number,
+    id:Number
+})
+
+
+Collection=mongoose.model('Collection',collectionSchema);
 module.exports = {
     User: User,
-    Question: Question
+    Question: Question,
+    Collection:Collection
 };
+
