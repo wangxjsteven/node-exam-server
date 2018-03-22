@@ -5,6 +5,10 @@ let express=require('express'),
     logout=require('./user/logout');
     questions=require('./course/questions')
     collection=require('./course/collection')
+    judge=require('./course/judge')
+    paper=require('./course/paper')
+    result=require('./course/result')
+    subject=require('./course/subject')
 
 // 该路由使用的中间件
 router.use(function timeLog(req, res, next) {
@@ -27,5 +31,12 @@ router.get('/logout', logout);
 router.get('/questions',questions);
 //收藏
 router.get('/collection',collection);
-
+//判断对错
+router.get('/judge',judge);
+//试卷
+router.get('/paper',paper);
+//结果
+router.get('/result',result);
+//考试科目
+router.get('/subject',subject);
 module.exports = router;
