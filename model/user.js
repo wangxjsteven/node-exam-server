@@ -1,5 +1,5 @@
 let mongoose = require("mongoose"),
-    User,Question,Collection,Judge,Sg,Result,Subject;
+    User,Question,Collection,Judge,Sg,Result,Subject,Infinte;
 mongoose.connect('mongodb://localhost:27017/challenge', (err) => {
     // body...
     if (err) {
@@ -67,6 +67,13 @@ let subjectSchema=new Schema({
 })
 Subject=mongoose.model('Subject',subjectSchema);
 
+let infinteSchema=new Schema({
+    infinite: Number,
+   course_type: String
+})
+Infinte=mongoose.model('Infinte',infinteSchema);
+
+
 module.exports = {
     User: User,
     Question: Question,
@@ -74,6 +81,8 @@ module.exports = {
     Judge:Judge,
     Paper:Sg,
     Result:Result,
-    Subject:Subject
+    Subject:Subject,
+    Infinte:Infinte
+
 };
 
