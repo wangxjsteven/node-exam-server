@@ -7,3 +7,10 @@ const {PayloadException, PayloadSuccess} = require('../utils/payload');
 
 global.PayloadException = PayloadException;
 global.PayloadSuccess = PayloadSuccess;
+global.delEmptyProp=(obj)=> {
+    let _obj = {}
+    for (let key in obj) {
+        obj[key] && (_obj[key] = obj[key])
+    }
+    return _obj
+}

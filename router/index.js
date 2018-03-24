@@ -6,6 +6,7 @@ let express = require('express'),
     questions = require('./course/questions'),
     collection = require('./course/collection'),
     judge = require('./course/judge'),
+    record = require('./course/record'),
     paper = require('./course/paper'),
     result = require('./course/result'),
     subject = require('./course/subject'),
@@ -16,7 +17,9 @@ let express = require('express'),
 router.use(function timeLog(req, res, next) {
     console.log('user Time: ', Date.now());
     res.set({
-        'Access-Control-Allow-Origin': '*'
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
+        'Access-Control-Allow-Methods': 'GET, POST, PUT,DELETE'
     })
     next();
 });
@@ -37,7 +40,9 @@ router.get('/questions', questions);
 //收藏
 router.get('/collection', collection);
 //判断对错
-router.get('/judge', judge);
+router.post('/judge', judge);
+//添加收藏
+router.post('/record', record);
 //试卷
 router.get('/paper', paper);
 //结果

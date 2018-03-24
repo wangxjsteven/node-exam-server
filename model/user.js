@@ -11,11 +11,11 @@ mongoose.connect('mongodb://localhost:27017/challenge', (err) => {
 let Schema = mongoose.Schema;
 //骨架模版
 let userSchema = new Schema({
-    username: String,
-    password: String,
-    id: String,
-    phone: String,
-    email: String
+    "username": String,
+    "password": String,
+    "id": String,
+    "phone": String,
+    "email": String
 })
 
 //变量名User should be the same as the first argument:'User'
@@ -23,40 +23,46 @@ User = mongoose.model('User', userSchema);
 
 //question模版
 let questionSchema = new Schema({
-    questionname: String,
-    success: Number,
-    id: Number
+    "paperId": Number,
+    "subjectId": Number,
+    "answer": String,
+    "option": Array,
+    "questionname": String,
+    "id": Number
 })
 //变量名User should be the same as the first argument:'User'
 Question = mongoose.model('Question', questionSchema);
+console.log('Question',Question,Question.where)
 
 let collectionSchema = new Schema({
-    success: Number,
-    id: Number
+    "id": Number,
+    "username":String,
+    "problemAns": String,
+    "problemNote": String
 })
 Collection = mongoose.model('Collection', collectionSchema);
 
 
 let judgeSchema = new Schema({
-    success: Number,
-    problems: Number
+    "correctAns": String,
+    "result": String,
+    "originAns": String,
+    "id": Number
 })
 Judge = mongoose.model('Judge', judgeSchema);
 
 
 let paperSchema = new Schema({
-    paperyear: Date,
-    papertitle: String,
-    id: Number
+    "paperyear": Date,
+    "papertitle": String,
+    "id": Number
 })
 Sg = mongoose.model('Sg', paperSchema);
 
 
 let resultSchema = new Schema({
-    evaluation: Number,
-    result: String,
-    id: Number,
-    success: Number
+    "result": String,
+    "id": Number
 })
 Result = mongoose.model('Result', resultSchema);
 
@@ -70,19 +76,14 @@ Subject = mongoose.model('Subject', subjectSchema);
 
 let courseSchema = new Schema({
     "id": Number,
-    "name": String
+    "paper_year": String,
+    "paper_title": String
 })
 Course = mongoose.model('Course', courseSchema);
 
 let infiniteSchema = new Schema({
     "id": Number,
-    "success": Number,
-    "paperId": Number,
-    "ProblemNum": Number,
-    "Problems": [{
-        "ProblemId": Number,
-        "ProblemOrder": Number
-    }]
+    "paperId": Number
 })
 Infinite = mongoose.model('Infinite', infiniteSchema);
 

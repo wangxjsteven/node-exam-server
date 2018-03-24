@@ -1,9 +1,12 @@
 let express = require('express')
 let app = express()
+let bodyParser = require('body-parser')
 const port = 4000
 
 //引入全局变量
 require('./common/global.js')
+
+app.use(bodyParser.json())
 
 //挂载路由
 let router = require('./router/index.js')

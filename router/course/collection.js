@@ -8,7 +8,7 @@ let { Collection } = require('../../model/user.js')
  */
 let collection = function(req, res, next) {
     Collection.find((err, collection) => {
-        console.log(collection)
+        // console.log(collection)
         if (err) {
             res.send(PayloadException('BUSINESS_ERROR', '获取题库失败，原因：' + err))
         } else {
