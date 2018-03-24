@@ -1,5 +1,5 @@
 let mongoose = require("mongoose"),
-    User,Question,Collection,Judge,Sg,Result,Subject,Course,Infinite;
+    User, Question, Collection, Judge, Sg, Result, Subject, Course, Infinite;
 mongoose.connect('mongodb://localhost:27017/challenge', (err) => {
     // body...
     if (err) {
@@ -30,63 +30,61 @@ let questionSchema = new Schema({
 //变量名User should be the same as the first argument:'User'
 Question = mongoose.model('Question', questionSchema);
 
-let collectionSchema=new Schema({
-    success:Number,
-    id:Number
+let collectionSchema = new Schema({
+    success: Number,
+    id: Number
 })
-Collection=mongoose.model('Collection',collectionSchema);
+Collection = mongoose.model('Collection', collectionSchema);
 
 
-let judgeSchema=new Schema({
-    success:Number,
-    problems:Number
+let judgeSchema = new Schema({
+    success: Number,
+    problems: Number
 })
-Judge=mongoose.model('Judge',judgeSchema);
+Judge = mongoose.model('Judge', judgeSchema);
 
 
-let paperSchema=new Schema({
-    paperyear:Date,
-    papertitle:String,
-    id:Number
+let paperSchema = new Schema({
+    paperyear: Date,
+    papertitle: String,
+    id: Number
 })
-Sg=mongoose.model('Sg',paperSchema);
+Sg = mongoose.model('Sg', paperSchema);
 
 
-let resultSchema=new Schema({
-   evaluation:Number,
-    result:String,
-    id:Number,
-    success:Number
+let resultSchema = new Schema({
+    evaluation: Number,
+    result: String,
+    id: Number,
+    success: Number
 })
-Result=mongoose.model('Result',resultSchema);
+Result = mongoose.model('Result', resultSchema);
 
 
-let subjectSchema=new Schema({
+let subjectSchema = new Schema({
     "id": Number,
     "name": String
 })
-Subject=mongoose.model('Subject',subjectSchema);
+Subject = mongoose.model('Subject', subjectSchema);
 
 
-let courseSchema=new Schema({
+let courseSchema = new Schema({
     "id": Number,
     "name": String
 })
-Course=mongoose.model('Course',courseSchema);
+Course = mongoose.model('Course', courseSchema);
 
-let infiniteSchema=new Schema({
-    "id":Number,
-  "success": Number,
-  "paperId": Number,
-  "ProblemNum": Number,
-  "Problems": [
-    {
-      "ProblemId": Number,
-      "ProblemOrder": Number
-    }
-  ]
+let infiniteSchema = new Schema({
+    "id": Number,
+    "success": Number,
+    "paperId": Number,
+    "ProblemNum": Number,
+    "Problems": [{
+        "ProblemId": Number,
+        "ProblemOrder": Number
+    }]
 })
-Infinite=mongoose.model('Infinite',infiniteSchema);
+Infinite = mongoose.model('Infinite', infiniteSchema);
 
 
 module.exports = {
@@ -94,10 +92,9 @@ module.exports = {
     Question,
     Collection,
     Judge,
-    Paper:Sg,
+    Paper: Sg,
     Result,
     Subject,
     Course,
     Infinite
 };
-
