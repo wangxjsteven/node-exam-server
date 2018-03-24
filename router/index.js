@@ -3,13 +3,14 @@ let express = require('express'),
     regist = require('./user/regist'),
     login = require('./user/login'),
     logout = require('./user/logout'),
-questions = require('./course/questions'),
-collection = require('./course/collection'),
-judge = require('./course/judge'),
-paper = require('./course/paper'),
-result = require('./course/result'),
-subject = require('./course/subject'),
-infinite=require('./course/infinite')
+    questions = require('./course/questions'),
+    collection = require('./course/collection'),
+    judge = require('./course/judge'),
+    paper = require('./course/paper'),
+    result = require('./course/result'),
+    subject = require('./course/subject'),
+    course = require('./course/course'),
+    infinite = require('./course/infinite')
 
 // 该路由使用的中间件
 router.use(function timeLog(req, res, next) {
@@ -43,6 +44,8 @@ router.get('/paper', paper);
 router.get('/result', result);
 //考试科目
 router.get('/subject', subject);
+//试卷封面列表
+router.get('/course', course);
 //随机模式
-router.get('/infinite',infinite);
+router.get('/infinite', infinite);
 module.exports = router;
