@@ -36,6 +36,7 @@ console.log('Question',Question,Question.where)
 
 let collectionSchema = new Schema({
     "id": Number,
+    "subjectId": Number,
     "username":String,
     "problemAns": String,
     "problemNote": String
