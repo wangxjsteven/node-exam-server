@@ -1,5 +1,5 @@
 let mongoose = require("mongoose"),
-    User, Question, Collection, Judge, Sg, Result, Subject, Course, Infinite;
+    User, Question, Collection, Judge, Result, Subject, Course, Infinite;
 mongoose.connect('mongodb://localhost:27017/challenge', (err) => {
     // body...
     if (err) {
@@ -53,14 +53,6 @@ let judgeSchema = new Schema({
 Judge = mongoose.model('Judge', judgeSchema);
 
 
-let paperSchema = new Schema({
-    "paperyear": Date,
-    "papertitle": String,
-    "id": Number
-})
-Sg = mongoose.model('Sg', paperSchema);
-
-
 let resultSchema = new Schema({
     "result": String,
     "id": Number
@@ -94,7 +86,6 @@ module.exports = {
     Question,
     Collection,
     Judge,
-    Paper: Sg,
     Result,
     Subject,
     Course,
