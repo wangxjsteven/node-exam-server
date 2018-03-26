@@ -8,13 +8,14 @@ let { Question } = require('../../model/user.js')
  */
 let questions = function(req, res, next) {
     let { ids } = req.query
-    // ids=ids?ids.split(','):[]
+    ids=typeof(ids)==='string'?ids.split(','):ids
     Question
         .where('id').in(ids)
         .exec((err, questions) => {
-            let result = []
+            let result = [],
+                _quests=questions||[]
             // console.log(questions)
-            for (let q of questions) {
+            for (let q of _quests) {
                 let { id, paperId, subjectId, questionname, option } = q
                 result.push({ id, paperId, subjectId, questionname, option })
             }
