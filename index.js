@@ -1,21 +1,37 @@
 let express = require('express')
 let app = express()
-let bodyParser = require('body-parser')
+let http = require('http').Server(app);
+let io = require('socket.io')(http);
+const soc=require('./socket/socket.js')
+
+let bodyParser = require('body-parser'),
+    cookieParser = require('cookie-parser')
 const port = 4000
 
 //引入全局变量
 require('./common/global.js')
 
 app.use(bodyParser.json())
+app.use(cookieParser())
 
 //挂载路由
 let router = require('./router/index.js')
 app.use('',router)
 app.use(express.static(__dirname + '/public'));
 
-let server = app.listen(port, function() {
+io.on('connection', function(socket){
+  console.log('a user connected');
+  socket.on('disconnect', function(){
+    console.log('user disconnected');
+  });
+  socket.on('joinGame', function(user){
+    console.log('joinGame user:',user);
+    socket.emit('setExamInfo',{exam:{},antagonist:{}})
+  });
+});
+
+let server = http.listen(port, function() {
     let add = server.address()
-    console.log(add)
     let host = add.address
     let p = add.port
 

@@ -1,6 +1,7 @@
 let express = require('express'),
     router = express.Router(),
-    regist = require('./user/regist'),
+    register = require('./user/register'),
+    code=require('./user/code'),
     login = require('./user/login'),
     logout = require('./user/logout'),
     questions = require('./course/questions'),
@@ -14,13 +15,26 @@ let express = require('express'),
     infinite = require('./course/infinite')
 
 // 该路由使用的中间件
-router.use(function timeLog(req, res, next) {
-    console.log('user Time: ', Date.now());
+router.use(async function (req, res, next) {
+    const {session} = req.cookies;
+
     res.set({
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
-        'Access-Control-Allow-Methods': 'GET, POST, PUT,DELETE'
+        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE'
     })
+
+    // let vcode = await RedisClient.multi()
+    //     .select(0)
+    //     .get('session')
+    //     .execAsync();
+    // if(req.url.indexOf('/api/')===-1){
+    //     if(vcode[0]!=='OK'){
+    //         return res.send(PayloadException('NETWORK_EXCEPTION', 'redis服务器异常'))
+    //     }else if(!vcode[1]||vcode[1]!==session){
+    //         return res.send(PayloadException(1003, '未登录'))
+    //     }
+    // }
     next();
 });
 
@@ -30,11 +44,13 @@ router.get('/', function(req, res) {
 });
 
 // 注册
-router.get('/regist', regist);
+router.all('/api/register', register);
+// 验证码
+router.all('/api/code', code);
 // 登入
-router.get('/login', login);
+router.all('/api/login', login);
 // 登出
-router.get('/logout', logout);
+router.all('/api/logout', logout);
 //问题
 router.get('/questions', questions);
 //收藏

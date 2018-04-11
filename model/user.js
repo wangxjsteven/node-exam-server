@@ -12,9 +12,10 @@ let Schema = mongoose.Schema;
 //骨架模版
 let userSchema = new Schema({
     "username": String,
+    "sex": String,
+    "birthday": Date,
+    "age": Number,
     "password": String,
-    "id": String,
-    "phone": String,
     "email": String
 })
 
@@ -32,7 +33,6 @@ let questionSchema = new Schema({
 })
 //变量名User should be the same as the first argument:'User'
 Question = mongoose.model('Question', questionSchema);
-console.log('Question',Question,Question.where)
 
 let collectionSchema = new Schema({
     "id": Number,
