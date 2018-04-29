@@ -1,6 +1,6 @@
 let { User } = require('../../model/user.js')
-const crypto = require('crypto'),
-    hash = crypto.createHash('md5')
+const crypto = require('crypto')
+let hash
 
 /**
  * @author: kelly
@@ -10,7 +10,8 @@ const crypto = require('crypto'),
  */
 let regist = async function(req, res, next) {
     let { username, nickname, password, birthday, sex, email, validate } = req.body || {},
-        reg = new RegExp(username), { code_session } = req.cookies
+        reg = new RegExp(username), { code_session } = req.cookies,
+    hash = crypto.createHash('md5')
     hash.update(password)
     let vcode = await RedisClient.multi()
         .select(0)
