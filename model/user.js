@@ -12,10 +12,12 @@ let Schema = mongoose.Schema;
 //骨架模版
 let userSchema = new Schema({
     "username": String,
+    "nickname": String,
     "sex": String,
     "birthday": Date,
     "age": Number,
     "password": String,
+    "level":Number,
     "email": String
 })
 

@@ -9,7 +9,7 @@ const crypto = require('crypto'),
  * @description: 登出
  */
 let regist = async function(req, res, next) {
-    let { username, password, phone, email, validate } = req.body || {},
+    let { username, nickname, password, birthday, sex, email, validate } = req.body || {},
         reg = new RegExp(username), { code_session } = req.cookies
     hash.update(password)
     let vcode = await RedisClient.multi()
@@ -24,7 +24,7 @@ let regist = async function(req, res, next) {
     if (!vcode[1]) {
         return res.send(PayloadException('BUSINESS_ERROR', '图形验证码已过期，请重新获取'))
     } else if (vcode[1] !== validate) {
-        return res.send(PayloadException('BUSINESS_ERROR', '图形验证码错误，请重新输入' ));
+        return res.send(PayloadException('BUSINESS_ERROR', '图形验证码错误，请重新输入'));
     } else {
         RedisClient.multi()
             .select(0)
@@ -37,12 +37,16 @@ let regist = async function(req, res, next) {
             if (!list || list.length === 0) {
                 let user1 = new User({
                     username: username,
+                    nickname: nickname,
                     password: hash.digest('hex'),
                     email: email || '',
-                    phone: phone || ''
+                    birthday: birthday || '',
+                    sex: sex || '',
+                    level:0,
+                    age: Math.floor((new Date() - new Date(birthday)) / (1000 * 60 * 60 * 24 * 365))
                 })
                 user1.save(function(err, doc) {
-                    err&&console.error(err);
+                    err && console.error(err);
                 })
                 res.send(PayloadSuccess())
             } else {

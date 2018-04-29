@@ -150,7 +150,7 @@ let socket = function(socket, io) {
             resultList.push({username,score})
         }
         if (resultList.length >= 2) {
-            console.log(resultList)
+            console.log(resultList,winner)
             io.to(room).emit('showResult', {
                 resultList,
                 winner

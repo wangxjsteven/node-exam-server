@@ -28,6 +28,7 @@ let login = function(req, res, next) {
         } else if (list.length === 0) {
             return res.send(PayloadException('PARAMETER_ERROR', '该用户不存在'))
         }
+        let user = list[0]
         if (list[0].password !== realpass) {
             return res.send(PayloadException('PARAMETER_ERROR', '密码不正确'))
         }
@@ -46,7 +47,7 @@ let login = function(req, res, next) {
                     path: '/',
                     httpOnly: true
                 });
-                res.send(PayloadSuccess({username}))
+                res.send(PayloadSuccess(user))
             });
     })
 };
