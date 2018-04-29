@@ -1,7 +1,7 @@
 let { Collection } = require('../../model/user.js')
 
 let record = function(req, res, next) {
-    let { type, id, originAns, username, note } = req.body || {}
+    let { type, id,subjectId, originAns, username, note } = req.body || {}
 
     let colResult = {
         "id": id,
