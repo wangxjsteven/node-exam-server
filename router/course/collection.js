@@ -23,25 +23,29 @@ let collection = function(req, res, next) {
         if (err) {
             res.send(PayloadException('BUSINESS_ERROR', '获取题库失败，原因：' + err))
         } else {
-            // if (_colls.length > 0) {
-            //     for (let elem of _colls) {
-            //         ids.push(elem.id)
-            //     }
-            //     Question.where('id').in(ids).exec((err, questions) => {
-            //         for (let q of questions) {
-            //             result.problems.push({
-            //                 id: q.id,
-            //                 problemAns: q.problemAns,
-            //                 problemNote,
-            //                 username: username
-            //             })
-            //         }
+            if (_colls.length > 0) {
+                for (let elem of _colls) {
+                    ids.push(elem.id)
+                }
+                Question.where('id').in(ids).exec((err, questions) => {
+                    for (let q of questions) {
+                        let currCol=_colls.find((c)=>{return c.id===q.id})
+                        result.problems.push({
+                            id: q.id,
+                            problemAns: currCol.problemAns,
+                            problemNote:currCol.problemNote,
+                            questionname:q.questionname,
+                            option:q.option,
+                            username: username
+                        })
+                    }
+                    res.send(PayloadSuccess(result))
 
-            //     })
-            // }
+                })
+            }
 
-            result.problems = _colls
-            res.send(PayloadSuccess(result))
+            // result.problems = _colls
+            // res.send(PayloadSuccess(result))
         }
     })
 

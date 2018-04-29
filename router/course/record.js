@@ -1,7 +1,7 @@
-let { Collection } = require('../../model/user.js')
+let { Collection,Question } = require('../../model/user.js')
 
 let record = function(req, res, next) {
-    let { type, id,subjectId, originAns, username, note } = req.body || {}
+    let { type, id, subjectId, originAns, username, note } = req.body || {}
 
     let colResult = {
         "id": id,
@@ -31,12 +31,24 @@ let record = function(req, res, next) {
             if (type === 'del') {
                 res.send(PayloadException('PARAMETER_ERROR', '收藏列表中无此题目'))
             } else {
-                Collection.create(colResult, (err, doc) => {
-                    if (err) {
-                        res.send(PayloadException('BUSINESS_ERROR', '获取题库失败，原因：' + err))
-                    } else {
-                        res.send(PayloadSuccess(colResult))
+                Question.findOne({ id }, (err, q) => {
+                    let coll = {
+                        id: colResult.id,
+                        subjectId: q.subjectId,
+                        problemAns: colResult.problemAns,
+                        problemNote: colResult.problemNote,
+                        questionname: q.questionname,
+                        option: q.option,
+                        username: username
                     }
+
+                    Collection.create(coll, (err, doc) => {
+                        if (err) {
+                            res.send(PayloadException('BUSINESS_ERROR', '获取题库失败，原因：' + err))
+                        } else {
+                            res.send(PayloadSuccess(colResult))
+                        }
+                    })
                 })
             }
         }

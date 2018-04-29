@@ -39,6 +39,8 @@ Question = mongoose.model('Question', questionSchema);
 let collectionSchema = new Schema({
     "id": Number,
     "subjectId": Number,
+    "option": Array,
+    "questionname": String,
     "username":String,
     "problemAns": String,
     "problemNote": String
